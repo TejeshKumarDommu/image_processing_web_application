@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color : white;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .navbar {
+            background-color: white;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-top : 10px;
+        }
+        .navbar-left {
+            padding-left: 20px;
+        }
+        .navbar-right {
+            padding-right: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 10px;
+            
+        
+        }
+
+        .element{
+            padding:10px;
+            text-decoration:dotted;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: brown;
+        }
+        .content{
+            width: 50%;
+            height: 100%;
+            float: right;
+        }
+
+        .image_container img{
+            padding:20px;
+        }
+
+        h2{
+            padding: 20px;
+            
+        }
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <img src="http://www.gamyamtech.com/bootstrap/imgs/gamyam_white_logo.png"  class="logo" width="140" height="70">
+        </div>
+        <div class="navbar-right">
+        <a class="element" href="home">Home</a><br>
+        <a class="element" href="about">About Us</a><br>
+        <a class="element" href="services">Services</a><br>
+        <a class="element" href="contact">Contact Us</a><br>
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        </div>
+    </div>
+    <div class ="image_container">
+    {% if image_file %}
+        <h2>Uploaded Image:</h2>
+        <img src="{{ url_for('static', filename='uploads/' + image_file) }}" alt="Uploaded image" width = "200" height = "400">
+        <img src="{{ url_for('static', filename='processed_images/' + th) }}" alt="Processed image" width = "200" height = "400">
+        <img src="{{ url_for('static', filename='processed_images/' + cont) }}" alt="Processed image" width = "200" height = "400">
+        
+        <div class="content">
+            <p>Image Dimensions:</p>
+            <p>Length: {{ wid }} cm</p>
+            <p>Width: {{ len }} cm</p>
+            <p>No. of Kernels: {{ count }} Kernels</p>
+        </div>
+    {% endif %}
+    </div>
+    <h1 style = "text-align:center;">Upload Image</h1>
+    <form method="POST" id="upload-form" action="/upload" enctype="multipart/form-data" style = "text-align:center;">
+        <input type="file" name="image">
+        <input type="submit" value="Upload">
+        
+    
+</body>
+</html>

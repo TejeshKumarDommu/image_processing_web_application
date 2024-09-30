@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: white;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-top : 10px;
+        }
+        .navbar-left {
+            padding-left: 20px;
+        }
+        .navbar-right {
+            padding-right: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 10px;
+            
+        
+        }
+
+        .element{
+            padding:10px;
+            text-decoration:dotted;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        form {
+            max-width: 350px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family:Arial, sans-serif;
+            background-color: hwb(0 100% 0% / 0.365);
+            border-radius: 8px;
+            box-shadow: 0 0 40px black;
+            margin-top : 100px;
+            
+            
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .signup-link {
+            
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="navbar-left">
+            <img src="http://www.gamyamtech.com/bootstrap/imgs/gamyam_white_logo.png" class="logo" width="140" height="70">
+        </div>
+        <div class="navbar-right">
+        <a class="element" href="home">Home</a><br>
+        <a class="element" href="about">About Us</a><br>
+        <a class="element" href="services">Services</a><br>
+        <a class="element" href="contact">Contact Us</a><br>
+        </div>
+    </div>
+
+    <form method="post" action="{{  url_for('login')  }}">
+        <h2>Login</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li style="color: red;">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+
+        <p>Don't have an account? <a href="{{  url_for('signup')  }}">Sign Up</a></p>
+
+    </form>
+
+    
+
+</body>
+</html>
